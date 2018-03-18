@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+  <!-- <classPathEntry location="/Program Files/IBM/SQLLIB/java/db2java.zip" /> -->
+
+  <context id="test" targetRuntime="MyBatis3Simple">
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+        connectionURL="jdbc:mysql://localhost:3306/employees"
+        userId="root"
+        password="root">
+    </jdbcConnection>
+
+    <javaTypeResolver >
+      <property name="forceBigDecimals" value="false" />
+    </javaTypeResolver>
+	<!-- 指定javabean的生成 -->
+    <javaModelGenerator targetPackage="xyz.bhrnsw.beans" targetProject="src/main/java">
+      <property name="enableSubPackages" value="true" />
+      <property name="trimStrings" value="true" />
+    </javaModelGenerator>
+	<!-- 生成map映射文件 -->
+    <sqlMapGenerator targetPackage="mapper"  targetProject="src/main/resources">
+      <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+
+    <javaClientGenerator type="XMLMAPPER" targetPackage="xyz.bhrnsw.mapper"  targetProject="src/main/java">
+      <property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+
+	<!-- 指定生成哪些表 -->
+	<table tableName="departments" domainObjectName="Department"></table>
+	<table tableName="employees" domainObjectName="Employee"></table>
+	<table tableName="dept_manager" domainObjectName="Manager"></table>
+  </context>
+</generatorConfiguration>
